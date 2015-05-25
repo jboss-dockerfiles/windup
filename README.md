@@ -4,18 +4,28 @@ This is a Dockerfile with [JBoss Windup](http://windup.jboss.org/).
 
 ## Usage
 
-To boot it
+- To boot it
 
-    docker run -it jboss/windup
+```
+    docker run -it -v /path/to/your/app:/opt/jboss/application:rw jboss/windup
+```
 
-To run it locally, clone this repository and move to the `windup` directory.
-	
+- This will mount the host directory, `/path/to/your/app`, into the container at `/opt/jboss/application`.
+
+- To run it locally, clone [this repository](https://github.com/jboss-dockerfiles/windup) and move to the `windup` directory.
+
+```	
 	docker build -t windup_img .
+```
+- Then run
 
-and then
+```
+	docker run -it -v /path/to/your/app:/opt/jboss/application:rw --name windup_ins windup_img
+```
 
-	docker run --name windup_ins windup_img
+- Once Windup starts and the command shell is prompted, the command `windup-migrate-app` is available, also your application will be available at `/opt/jboss/application`. This path will have `read/write` permission due to the `rw` parameter used, so you can create a folder called `output-report` inside (e.g `/opt/jboss/application/output-report`) to be the `--output` parameter that Windup uses to save the generated report.
 
+- After report have been generated, you can access it also from the host by checking the path you mounted locally. Note you will see that the `output-report` folder was created locally as well, and the report is inside it.   
 
 ## Image internals
 
