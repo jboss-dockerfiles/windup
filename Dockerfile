@@ -5,7 +5,7 @@ FROM jboss/base-jdk:7
 MAINTAINER JBoss Windup Team <jboss-migration@redhat.com>
 
 # Set the WINDUP_VERSION env variable
-ENV WINDUP_VERSION 2.3.0.Final
+ENV WINDUP_VERSION 2.4.0.CR1
 
 # Add the JBoss Windup distribution to /opt, and make windup the owner of the extracted tar content
 # Make sure the distribution is available from a well-known place
